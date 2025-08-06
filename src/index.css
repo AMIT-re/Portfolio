@@ -1,0 +1,504 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 224 71% 4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+
+    --primary: 262 100% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom portfolio colors */
+    --hero-gradient: linear-gradient(135deg, 262 100% 50%, 280 100% 70%);
+    --dot-color: 220 8.9% 46.1%;
+    --dot-hover: 262 100% 50%;
+    --glass-bg: 0 0% 100% / 0.8;
+    --glass-border: 220 13% 91% / 0.3;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 213 31% 91%;
+
+    --primary: 262 100% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 262 100% 50%;
+
+    /* Custom portfolio colors for dark mode */
+    --hero-gradient: linear-gradient(135deg, 262 100% 50%, 280 100% 70%);
+    --dot-color: 217.9 10.6% 64.9%;
+    --dot-hover: 262 100% 60%;
+    --glass-bg: 224 71% 4% / 0.8;
+    --glass-border: 215 27.9% 16.9% / 0.3;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-x-hidden;
+  }
+
+  .hero-gradient {
+    background: var(--hero-gradient);
+  }
+
+  .glass-morphism {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--glass-border));
+  }
+
+  .dot-grid {
+    background-image: radial-gradient(circle, hsl(var(--dot-color)) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  /* Retro styles */
+  .retro-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background: linear-gradient(45deg, hsl(var(--primary)), hsl(280 100% 70%));
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .retro-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shine 2s infinite;
+  }
+
+  .retro-text {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+
+  .retro-box {
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(280 100% 70% / 0.1));
+    border: 2px solid hsl(var(--primary) / 0.3);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .retro-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(280 100% 70%), hsl(var(--primary)));
+    animation: neon-pulse 2s ease-in-out infinite alternate;
+  }
+
+  .retro-glow {
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+  }
+
+  .retro-terminal {
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--border));
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'Courier New', monospace;
+  }
+
+  .terminal-header {
+    background: hsl(var(--muted));
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  .terminal-dots {
+    display: flex;
+    gap: 4px;
+  }
+
+  .terminal-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: hsl(var(--muted-foreground));
+  }
+
+  .terminal-dots span:first-child {
+    background: #ff5f56;
+  }
+
+  .terminal-dots span:nth-child(2) {
+    background: #ffbd2e;
+  }
+
+  .terminal-dots span:nth-child(3) {
+    background: #27ca3f;
+  }
+
+  .terminal-title {
+    font-size: 12px;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .terminal-content {
+    padding: 16px;
+  }
+
+  @keyframes shine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  @keyframes neon-pulse {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+
+  /* iMac styles */
+  .imac-container {
+    perspective: 1000px;
+    margin: 2rem auto;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .imac-screen {
+    background: #1a1a1a;
+    border-radius: 20px 20px 8px 8px;
+    padding: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transform: rotateY(-5deg) rotateX(5deg);
+    transition: transform 0.3s ease;
+  }
+
+  .imac-screen:hover {
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+
+  .imac-bezel {
+    background: #000;
+    border-radius: 12px;
+    padding: 4px;
+    aspect-ratio: 16/10;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .imac-desktop {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .desktop-wallpaper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(280 100% 70%));
+    opacity: 0.8;
+  }
+
+  .menu-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    font-size: 10px;
+    color: white;
+    z-index: 10;
+  }
+
+  .menu-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .apple-logo {
+    font-size: 12px;
+  }
+
+  .menu-item {
+    font-weight: 500;
+  }
+
+  .time {
+    font-size: 10px;
+  }
+
+  .desktop-icons {
+    position: absolute;
+    top: 30px;
+    left: 8px;
+    right: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 8px;
+  }
+
+  .desktop-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .desktop-app:hover {
+    background: rgba(255,255,255,0.1);
+  }
+
+  .desktop-app.selected {
+    background: rgba(255,255,255,0.2);
+  }
+
+  .app-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease;
+  }
+
+  .desktop-app:hover .app-icon {
+    transform: scale(1.1);
+  }
+
+  .app-name {
+    font-size: 8px;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    line-height: 1;
+  }
+
+  .dock {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 4px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    padding: 6px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .dock-app {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .dock-app:hover {
+    transform: scale(1.2);
+  }
+
+  .dock-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  .imac-stand {
+    width: 120px;
+    height: 60px;
+    background: linear-gradient(to bottom, #c0c0c0, #a0a0a0);
+    margin: 0 auto;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+
+  .imac-base {
+    width: 200px;
+    height: 20px;
+    background: linear-gradient(to bottom, #d0d0d0, #b0b0b0);
+    margin: 0 auto;
+    border-radius: 50px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  }
+
+  .app-details {
+    margin-top: 1rem;
+  }
+
+  .app-window {
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--border));
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+
+  .window-header {
+    background: hsl(var(--muted));
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  .window-controls {
+    display: flex;
+    gap: 4px;
+  }
+
+  .control {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .control:hover {
+    transform: scale(1.2);
+  }
+
+  .close {
+    background: #ff5f56;
+  }
+
+  .minimize {
+    background: #ffbd2e;
+  }
+
+  .maximize {
+    background: #27ca3f;
+  }
+
+  .window-title {
+    font-size: 12px;
+    color: hsl(var(--muted-foreground));
+    flex: 1;
+    text-align: center;
+  }
+
+  .window-content {
+    padding: 16px;
+  }
+
+  .app-description {
+    font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: hsl(var(--foreground));
+    line-height: 1.6;
+    white-space: pre-line;
+    margin: 0;
+  }
+}
